@@ -14,9 +14,9 @@ commands = {
                          "ufw allow ssh/tcp",
                          "ufw logging on",
                          "ufw status"],
-  "search for media files": ["/home -iregex '.*\.\(mp3\|mp4\|m4a\|mov\|aac\|ogg\|webm\|flac\|jpg\|gif\|png\|jpeg\|tiff\)$'"],
+  "search for media files": ["find /home -iregex '.*\.\(mp3\|mp4\|m4a\|mov\|aac\|ogg\|webm\|flac\|jpg\|gif\|png\|jpeg\|tiff\)$'"],
   "remove ftp": ["apt-get autoremove -y --purge ftp ftpd vsftpd pure-ftpd"],
-  "remove samba": ["apt -y autoremove --purge samba samba-common smbclient"],
+  "remove samba": ["apt-get -y autoremove --purge samba samba-common smbclient"],
   "list contents of rc.local": ["cat /etc/rc.local"],
   "lock root user locally": ["passwd -l root"]
   
