@@ -25,8 +25,8 @@ commands = {
   "display groups": ["cat /etc/group | less"],
   "check for shellshock vulnerability": ["env 'VAR=() { :;}; echo Bash is vulnerable!' 'FUNCTION()=() { :;}; echo Bash is vulnerable!' bash -c 'echo Bash is safe if this is the only line displayed.'"],
   "search top for bad processes": ["top",
-                                   "ps -aux",
-                                   "ps -aux | grep python"]  
+                                   "ps -aux | less",
+                                   "ps -aux | grep python | less"]  
   
 }
 
