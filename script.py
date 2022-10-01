@@ -1,6 +1,7 @@
 # Ubuntu CP Script
 # Gabe Tao
 import os
+
 commands = {
   "run Conduro security script": ["wget -O ./conduro.sh https://raw.githubusercontent.com/t-ebag/ubuntu/main/install.sh",
                                   "chmod +x ./conduro.sh",
@@ -33,11 +34,14 @@ for count, c in enumerate(commands):
   print(f"========== Task #{count+1} ==========")
   print(f"This task will {c} and will run the command(s):")
   for i in commands[c]: print("sudo " + i)
-  response = input("Proceed? (y/n)")
+  response = input("Proceed? [y/n]: ")
   if response == "y":
     print()
     for i in commands[c]: os.system("sudo " + i)
     print("========== SUCCESS ==========")
+  elif response == "stop":
+    print("Stopping script.")
+    break
   else:
 
     print("========== SKIPPED ==========")
