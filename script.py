@@ -26,7 +26,9 @@ commands = {
   "check for shellshock vulnerability": ["env 'VAR=() { :;}; echo Bash is vulnerable!' 'FUNCTION()=() { :;}; echo Bash is vulnerable!' bash -c 'echo Bash is safe if this is the only line displayed.'"],
   "search top for bad processes": ["top",
                                    "ps -aux | less",
-                                   "ps -aux | grep python | less"]  
+                                   "ps -aux | grep python | less"],
+  "check for rootkits": ["apt-get install -y chrootkit",
+                         "chrootkit -q"]
   
 }
 
