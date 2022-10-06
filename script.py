@@ -50,3 +50,29 @@ for count, c in enumerate(commands):
 
   print()
   print()
+  
+print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+print("Time to do user password changes")
+print("Type the names of the users, NOT INCLUDING YOURSELF, and type stop to stop:")
+username_password_list = []
+while True:
+  username = input("username:")
+  if username != "stop":
+    username_password_list.append(f"{username}:CyberPatriot!123\n")
+    print(f"    added {username}:CyberPatriot!123 successfully")
+  else:
+    break
+
+bulkpasswords = open("bulkpasswords", "w")
+bulkpasswords.writelines(username_password_list)
+bulkpasswords.close()
+print("Done")
+
+input("Check over file 'bulkpasswords'....")
+
+print("Running command 'chpassword < bulkpasswords'...")
+os.system("sudo chpassword < bulkpasswords")
+print("done")
+
+            
+    
