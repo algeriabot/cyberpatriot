@@ -28,7 +28,8 @@ commands = {
                                    "ps -aux | less",
                                    "ps -aux | grep python | less"],
   "check for rootkits": ["apt-get install -y chrootkit",
-                         "chrootkit -q"]
+                         "chrootkit -q"],
+  "list snap packages": ["snap list"]
   
 }
 
