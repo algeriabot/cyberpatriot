@@ -29,7 +29,16 @@ commands = {
                                    "ps -aux | grep python | less"],
   "check for rootkits": ["apt-get install -y chrootkit",
                          "chrootkit -q"],
-  "list snap packages": ["snap list"]
+  "list snap packages": ["snap list"],
+  "configure sensitive file permissions (first, open a terminal and check who owns these: \n/etc/shadow\n/etc/gshadow\n": ["chown root:root /etc/passwd",
+                                           "chmod u-x,go-wx /etc/passwd",
+                                           "chown root:root /etc/group",
+                                           "chmod u-x,go-wx /etc/group",
+                                           "chown root:root /etc/shadow",
+                                           "chmod u-x,g-wx,o-rwx /etc/shadow",
+                                           "chown root:root /etc/gshadow",
+                                           "chmod u-x,g-wx,o-rwx /etc/gshadow"],
+  "list user home directories (make sure everyone owns their own)": ["ls -lah /home
   
 }
 
