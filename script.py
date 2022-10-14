@@ -38,7 +38,7 @@ commands = {
                                            "chmod u-x,g-wx,o-rwx /etc/shadow",
                                            "chown root:root /etc/gshadow",
                                            "chmod u-x,g-wx,o-rwx /etc/gshadow"],
-  "list user home directories (make sure everyone owns their own)": ["ls -lah /home
+  "list user home directories (make sure everyone owns their own)": ["ls -lah /home/"]
   
 }
 
