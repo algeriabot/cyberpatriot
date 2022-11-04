@@ -1,12 +1,18 @@
-## CP Security Script
+## 1. CP Security Script
 
-This file runs security checks and audits on an Ubuntu machine.
-
-Created for Team Ctrl-Alt-Elite for CPXV.
+Conduro and custom commands included.
 
 To download:
 ```
 wget https://raw.githubusercontent.com/t-ebag/cyberpatriot/main/script.py
 sudo python3 script.py
 ```
+
+## 2. CIS Hardening Script
+
+To download:
+```
+wget https://raw.githubusercontent.com/t-ebag/cyberpatriot/main/cis.sh
+chmod +x ./cis.sh
+sudo ./cis.sh
 
