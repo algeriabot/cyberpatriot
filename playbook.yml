@@ -1,0 +1,7 @@
+- name: Harden Server
+  hosts: servers
+  become: yes
+
+  roles:
+    - Ubuntu2204_cis
+    
