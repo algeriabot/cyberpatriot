@@ -4,5 +4,5 @@
   become: yes
 
   roles:
-    - Ubuntu2204_cis
+    - ubuntu2204_cis
     
