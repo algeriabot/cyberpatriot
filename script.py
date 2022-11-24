@@ -7,7 +7,7 @@ commands = {
                                   "chmod +x ./conduro.sh",
                                   "./conduro.sh"],
   "install password checking module": ["apt-get install libpam-pwquality"],
-  "install text editor": ["apt-get install micro"],
+  "install text editor": ["curl https://getmic.ro | bash", "mv ./micro /bin/micro"],
   "install gufw": ["apt-get install gufw"],
   "install bum": ["apt-get install bum"],
   "install auditing program": ["apt-get install auditd"],
