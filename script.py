@@ -25,7 +25,8 @@ commands = {
                      "echo \"alias c='clear'\" >> .bashrc",
                      "echo \"alias edit='micro'\" >> .bashrc",
                      "echo \"alias nano='micro'\" >> .bashrc",
-                     "echo \"alias sudo='sudo '\" >> .bashrc"]
+                     "echo \"alias sudo='sudo '\" >> .bashrc",
+                     "source ~/.bashrc"]
   "search for media files": ["find /home -iregex '.*\.\(mp3\|mp4\|m4a\|mov\|aac\|ogg\|webm\|flac\|jpg\|gif\|png\|jpeg\|tiff\)$'"],
   "remove ftp": ["apt-get autoremove -y --purge ftp ftpd vsftpd pure-ftpd"],
   "remove samba": ["apt-get autoremove -y --purge samba samba-common smbclient"],
@@ -59,14 +60,19 @@ for count, c in enumerate(commands):
   print(f"\033[92m ========== TASK #{count+1} ========== \033[00m")
   print()
   print(f"\033[96m        This task will {c} and will run the command(s): \033[00m")
-  for i in commands[c]: print("        sudo " + i)
+  for i in commands[c]:
+    print("        sudo " + i)
   print()
   response = input("        Proceed? [y/n/s]: ")
   print()
   
   if response == "y":
     
-    for i in commands[c]: os.system("sudo " + i)
+    for i in commands[c]:
+      if c == "set up aliases":
+        os.system(i)
+      else:
+        os.system("sudo " + i)
     print("\033[92m ========== SUCCESS ========== \033[00m")
     
   elif "s" in response:
