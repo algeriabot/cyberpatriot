@@ -53,7 +53,7 @@ for count, c in enumerate(commands):
   print(f"\033[96m        This task will {c} and will run the command(s): \033[00m")
   for i in commands[c]: print("        sudo " + i)
   print()
-  response = input("Proceed? [y/n/s]: ")
+  response = input("        Proceed? [y/n/s]: ")
   print()
   
   if response == "y":
