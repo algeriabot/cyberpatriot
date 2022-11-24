@@ -41,25 +41,33 @@ commands = {
                                            "chmod u-x,g-wx,o-rwx /etc/shadow",
                                            "chown root:root /etc/gshadow",
                                            "chmod u-x,g-wx,o-rwx /etc/gshadow"],
-  "list user home directories (make sure everyone owns their own)": ["ls -lah /home/"]
+  "list user home directories (make sure everyone owns their own)": ["ls -lah /home/"],
+  "print PATH": ['echo "$PATH" | tr ":" "\n" | nl']
   
 }
 
 for count, c in enumerate(commands):
-  print(f"========== Task #{count+1} ==========")
-  print(f"This task will {c} and will run the command(s):")
-  for i in commands[c]: print("sudo " + i)
-  response = input("Proceed? [y/n]: ")
+  
+  print(f"\033[92m ========== TASK #{count+1} ========== \033[00m")
+  print()
+  print(f"\033[96m        This task will {c} and will run the command(s): \033[00m")
+  for i in commands[c]: print("        sudo " + i)
+  print()
+  response = input("Proceed? [y/n/s]: ")
+  print()
+  
   if response == "y":
-    print()
+    
     for i in commands[c]: os.system("sudo " + i)
-    print("========== SUCCESS ==========")
-  elif response == "stop":
+    print("\033[92m ========== SUCCESS ========== \033[00m")
+    
+  elif "s" in response:
+    
     print("Stopping script.")
     break
+    
   else:
-
-    print("========== SKIPPED ==========")
+    print("\033[91m ========== SKIPPED ========== \033[00m")
 
   print()
   print()
