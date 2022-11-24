@@ -26,7 +26,7 @@ commands = {
                      "echo \"alias edit='micro'\" >> .bashrc",
                      "echo \"alias nano='micro'\" >> .bashrc",
                      "echo \"alias sudo='sudo '\" >> .bashrc",
-                     "source ~/.bashrc"]
+                     "source ~/.bashrc"],
   "search for media files": ["find /home -iregex '.*\.\(mp3\|mp4\|m4a\|mov\|aac\|ogg\|webm\|flac\|jpg\|gif\|png\|jpeg\|tiff\)$'"],
   "remove ftp": ["apt-get autoremove -y --purge ftp ftpd vsftpd pure-ftpd"],
   "remove samba": ["apt-get autoremove -y --purge samba samba-common smbclient"],
