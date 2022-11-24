@@ -30,6 +30,7 @@ commands = {
                                    "ps -aux | grep python | less"],
   "check for rootkits": ["apt-get install -y chrootkit",
                          "chrootkit -q"],
+  "enable snap": ["systemctl unmask snapd", "systemctl start snapd"],
   "list snap packages": ["snap list"],
   "configure sensitive file permissions (first, open a terminal and check who owns these: \n/etc/shadow\n/etc/gshadow\n": ["chown root:root /etc/passwd",
                                            "chmod u-x,go-wx /etc/passwd",
