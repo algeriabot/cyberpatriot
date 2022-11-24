@@ -8,6 +8,7 @@ commands = {
                                   "./conduro.sh"],
   "install password checking module": ["apt-get install libpam-pwquality"],
   "install text editor": ["curl https://getmic.ro | bash", "mv ./micro /bin/micro"],
+  "install bat": ["apt-get install bat"],
   "install gufw": ["apt-get install gufw"],
   "install bum": ["apt-get install bum"],
   "install auditing program": ["apt-get install auditd"],
