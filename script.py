@@ -3,22 +3,10 @@
 import os
 
 commands = {
-  "run Conduro security script": ["wget -O ./conduro.sh https://raw.githubusercontent.com/t-ebag/ubuntu/main/install.sh",
-                                  "chmod +x ./conduro.sh",
-                                  "./conduro.sh"],
+  "run prelim updates": ["apt-get update -y"],
   
-  "install password checking module": ["apt-get install libpam-pwquality"],
-  "install micro text editor": ["curl https://getmic.ro | bash", "mv ./micro /bin/micro"],
-  "install bat": ["apt-get install bat"],
-  "install gufw": ["apt-get install gufw"],
-  "install bum": ["apt-get install bum"],
-  "install auditing program": ["apt-get install auditd"],
-  "install antivirus": ["apt-get install clamtk"],
-  "enable audits": ["auditctl -e 1"],
-  "enable ufw firewall": ["ufw enable",
-                         "ufw allow ssh/tcp",
-                         "ufw logging on",
-                         "ufw status verbose"],
+  "install dependencies": ["apt-get install -y wget curl"],
+  
   "set up aliases": ["echo >> .bashrc",
                      "echo \"alias canhas='sudo apt-get install -y'\" >> .bashrc",
                      "echo \"alias kthxbye='sudo apt-get remove --purge'\" >> .bashrc",
@@ -28,30 +16,70 @@ commands = {
                      "echo \"alias sudo='sudo '\" >> .bashrc",
                      "echo \"alias cat='batcat'\" >> .bashrc",
                      "source ~/.bashrc"],
+  
+  "run Conduro security script": ["wget -O ./conduro.sh https://raw.githubusercontent.com/t-ebag/ubuntu/main/install.sh",
+                                  "chmod +x ./conduro.sh",
+                                  "./conduro.sh"],
+  
+  "install password checking module": ["apt-get install libpam-pwquality"],
+  
+  "install micro text editor": ["curl https://getmic.ro | bash", "mv ./micro /bin/micro"],
+  
+  "install bat": ["apt-get install bat"],
+  
+  "install gufw": ["apt-get install gufw"],
+  
+  "install bum": ["apt-get install bum"],
+  
+  "install auditing program": ["apt-get install auditd"],
+  
+  "install antivirus": ["apt-get install clamtk"],
+  
+  "enable audits": ["auditctl -e 1"],
+  
+  "enable ufw firewall": ["ufw enable",
+                         "ufw allow ssh/tcp",
+                         "ufw logging on",
+                         "ufw status verbose"],
+  
   "search for media files": ["find /home -iregex '.*\.\(mp3\|mp4\|m4a\|mov\|aac\|ogg\|webm\|flac\|jpg\|gif\|png\|jpeg\|tiff\)$'"],
+  
   "remove ftp": ["apt-get autoremove -y --purge ftp ftpd vsftpd pure-ftpd"],
+  
   "remove samba": ["apt-get autoremove -y --purge samba samba-common smbclient"],
+  
   "remove avahi": ["apt-get autoremove -y --purge avahi-daemon"],
-  "list contents of rc.local": ["cat /etc/rc.local | less"],
+  
+  "list contents of rc.local": ["cat /etc/rc.local"],
+  
   "lock root user locally": ["passwd -l root"],
+  
   "display groups": ["cat /etc/group | less"],
+  
   "check for shellshock vulnerability": ["env 'VAR=() { :;}; echo Bash is vulnerable!' 'FUNCTION()=() { :;}; echo Bash is vulnerable!' bash -c 'echo Bash is safe if this is the only line displayed.'"],
+  
   "search top for bad processes": ["top",
                                    "ps -aux | less",
                                    "ps -aux | grep python | less"],
+  
   "check for rootkits": ["apt-get install -y chrootkit",
                          "chrootkit -q"],
+  
   "enable snap": ["systemctl unmask snapd", "systemctl start snapd"],
+  
   "list snap packages": ["snap list"],
+  
   "configure sensitive file permissions (first, open a terminal and check who owns these: \n/etc/shadow\n/etc/gshadow\n": ["chown root:root /etc/passwd",
                                            "chmod u-x,go-wx /etc/passwd",
                                            "chown root:root /etc/group",
                                            "chmod u-x,go-wx /etc/group",
-                                           "chown root:root /etc/shadow",
+                                           "chown root:shadow /etc/shadow",
                                            "chmod u-x,g-wx,o-rwx /etc/shadow",
-                                           "chown root:root /etc/gshadow",
+                                           "chown root:shadow /etc/gshadow",
                                            "chmod u-x,g-wx,o-rwx /etc/gshadow"],
+  
   "list user home directories (make sure everyone owns their own)": ["ls -lah /home/"],
+  
   "print PATH": ['echo "$PATH" | tr ":" "\n" | nl']
   
 }
