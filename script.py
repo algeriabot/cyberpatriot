@@ -40,6 +40,7 @@ commands = {
   "enable ufw firewall": ["ufw enable",
                          "ufw allow ssh/tcp",
                          "ufw logging on",
+                         "ufw logging high",
                          "ufw status verbose"],
   
   "search for media files": ["find /home -iregex '.*\.\(mp3\|mp4\|m4a\|mov\|aac\|ogg\|webm\|flac\|jpg\|gif\|png\|jpeg\|tiff\)$'"],
@@ -52,7 +53,7 @@ commands = {
   
   "list contents of rc.local": ["cat /etc/rc.local"],
   
-  "lock root user locally": ["passwd -l root"],
+  "lock root user locally": ["passwd -l root"], 
   
   "display groups": ["cat /etc/group | less"],
   
