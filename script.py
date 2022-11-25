@@ -7,16 +7,6 @@ commands = {
   
   "install dependencies": ["apt-get install -y wget curl"],
   
-  "set up aliases": ["echo >> .bashrc",
-                     "echo \"alias canhas='sudo apt-get install -y'\" >> .bashrc",
-                     "echo \"alias kthxbye='sudo apt-get remove --purge'\" >> .bashrc",
-                     "echo \"alias c='clear'\" >> .bashrc",
-                     "echo \"alias edit='micro'\" >> .bashrc",
-                     "echo \"alias nano='micro'\" >> .bashrc",
-                     "echo \"alias sudo='sudo '\" >> .bashrc",
-                     "echo \"alias cat='batcat'\" >> .bashrc",
-                     "source ~/.bashrc"],
-  
   "run Conduro security script": ["wget -O ./conduro.sh https://raw.githubusercontent.com/t-ebag/ubuntu/main/install.sh",
                                   "chmod +x ./conduro.sh",
                                   "./conduro.sh"],
@@ -55,6 +45,8 @@ commands = {
   
   "lock root user locally": ["passwd -l root"], 
   
+  "make sure there are no uid 0 besides root": ["cat /etc/passwd | grep :0:"],
+  
   "display groups": ["cat /etc/group | less"],
   
   "check for shellshock vulnerability": ["env 'VAR=() { :;}; echo Bash is vulnerable!' 'FUNCTION()=() { :;}; echo Bash is vulnerable!' bash -c 'echo Bash is safe if this is the only line displayed.'"],
@@ -65,6 +57,8 @@ commands = {
   
   "check for rootkits": ["apt-get install -y chrootkit",
                          "chrootkit -q"],
+  
+  "check for bad apt sources": ["micro /etc/apt/sources.list"],
   
   "enable snap": ["systemctl unmask snapd", "systemctl start snapd"],
   
@@ -81,7 +75,17 @@ commands = {
   
   "list user home directories (make sure everyone owns their own)": ["ls -lah /home/"],
   
-  "print PATH": ['echo "$PATH" | tr ":" "\n" | nl']
+  "print PATH": ['echo "$PATH" | tr ":" "\n" | nl'],
+                                                
+  "set up aliases": ["echo >> .bashrc",
+                     "echo \"alias canhas='sudo apt-get install -y'\" >> .bashrc",
+                     "echo \"alias kthxbye='sudo apt-get remove --purge'\" >> .bashrc",
+                     "echo \"alias c='clear'\" >> .bashrc",
+                     "echo \"alias edit='micro'\" >> .bashrc",
+                     "echo \"alias nano='micro'\" >> .bashrc",
+                     "echo \"alias sudo='sudo '\" >> .bashrc",
+                     "echo \"alias cat='batcat'\" >> .bashrc",
+                     "source ~/.bashrc"]
   
 }
 
