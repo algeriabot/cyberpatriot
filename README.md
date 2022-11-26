@@ -1,4 +1,4 @@
-## 1. CP Security Script
+## 1. Python Security Script
 
 Conduro and custom commands included.
 
@@ -15,4 +15,4 @@ To download:
 wget https://raw.githubusercontent.com/t-ebag/cyberpatriot/main/cis.sh
 chmod +x ./cis.sh
 ./cis.sh (don't run as root!)
-
+```
