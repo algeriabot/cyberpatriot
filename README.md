@@ -14,5 +14,5 @@ To download:
 ```
 wget https://raw.githubusercontent.com/t-ebag/cyberpatriot/main/cis.sh
 chmod +x ./cis.sh
-sudo ./cis.sh
+./cis.sh (don't run as root!)
 
