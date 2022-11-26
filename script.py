@@ -25,6 +25,8 @@ commands = {
   
   "install antivirus": ["apt-get install clamtk"],
   
+  "install htop": ["apt-get install htop"],
+  
   "enable audits": ["auditctl -e 1"],
   
   "enable ufw firewall": ["ufw enable",
@@ -85,6 +87,7 @@ commands = {
                      "echo \"alias nano='micro'\" >> .bashrc",
                      "echo \"alias sudo='sudo '\" >> .bashrc",
                      "echo \"alias cat='batcat'\" >> .bashrc",
+                     "echo \"alias top='htop'\" >> .bashrc",
                      "source ~/.bashrc"]
   
 }
