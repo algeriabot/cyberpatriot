@@ -37,7 +37,7 @@ commands = {
                          "ufw logging high",
                          "ufw status verbose"],
   
-  "search for media files": ["find /home -iregex '.*\.\(mp3\|mp4\|m4a\|mov\|aac\|ogg\|webm\|flac\|jpg\|gif\|png\|jpeg\|tiff\)$'"],
+  "search for media files in /home": ["find /home -iregex '.*\.\(mp3\|mp4\|mp6\|pdf\|m4a\|mov\|aac\|ogg\|webm\|flac\|jpg\|gif\|png\|jpeg\|tiff\)$'"],
   
   "remove ftp": ["apt-get remove --purge ftp ftpd vsftpd pure-ftpd"],
   
