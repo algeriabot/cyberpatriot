@@ -11,6 +11,8 @@ commands = {
                                   "chmod +x ./conduro.sh",
                                   "./conduro.sh"],
   
+  "check for bad apt sources": ["micro /etc/apt/sources.list"],
+  
   "install password checking module": ["apt-get install libpam-pwquality"],
   
   "install micro text editor": ["curl https://getmic.ro | bash", "mv ./micro /bin/micro"],
@@ -37,11 +39,13 @@ commands = {
   
   "search for media files": ["find /home -iregex '.*\.\(mp3\|mp4\|m4a\|mov\|aac\|ogg\|webm\|flac\|jpg\|gif\|png\|jpeg\|tiff\)$'"],
   
-  "remove ftp": ["apt-get autoremove -y --purge ftp ftpd vsftpd pure-ftpd"],
+  "remove ftp": ["apt-get remove --purge ftp ftpd vsftpd pure-ftpd"],
   
-  "remove samba": ["apt-get autoremove -y --purge samba samba-common smbclient"],
+  "remove samba": ["apt-get remove --purge samba samba-common smbclient"],
   
-  "remove avahi": ["apt-get autoremove -y --purge avahi-daemon"],
+  "remove avahi": ["apt-get remove --purge avahi-daemon"],
+  
+  "remove apache(2)": ["apt-get remove --purge apache apache2"],
   
   "list contents of rc.local": ["cat /etc/rc.local"],
   
@@ -59,8 +63,6 @@ commands = {
   
   "check for rootkits": ["apt-get install -y chrootkit",
                          "chrootkit -q"],
-  
-  "check for bad apt sources": ["micro /etc/apt/sources.list"],
   
   "enable snap": ["systemctl unmask snapd", "systemctl start snapd"],
   
@@ -88,7 +90,8 @@ commands = {
                      "echo \"alias sudo='sudo '\" >> .bashrc",
                      "echo \"alias cat='batcat'\" >> .bashrc",
                      "echo \"alias top='htop'\" >> .bashrc",
-                     "source ~/.bashrc"]
+                     "source ~/.bashrc"],
+  "apt-get cleanup stuff": ["apt-get autoremove", "apt-get autoclean"]
   
 }
 
