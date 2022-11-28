@@ -47,6 +47,12 @@ commands = {
   
   "remove apache(2)": ["apt-get remove --purge apache apache2"],
   
+  "remove telnet": ["apt-get remove --purge telnet"],
+  
+  "remove snmp email server": ["service snmp stop", "apt-get remove --purge snmp"],
+  
+  "remove pop3": ["service pop3 stop", "apt-get remove --purge pop3"],
+    
   "list contents of rc.local": ["cat /etc/rc.local"],
   
   "lock root user locally": ["passwd -l root"], 
