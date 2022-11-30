@@ -57,15 +57,17 @@ commands = {
   
   "lock root user locally": ["passwd -l root"], 
   
-  "make sure there are no uid 0 besides root": ["cat /etc/passwd | grep :0:"],
+  "make sure there are no uid 0 besides root": ["grep :0: /etc/passwd"],
+  
+  "make sure there are no users with unset or empty password": ["grep ':*:' /etc/passwd", "grep '::' /etc/passwd"],
   
   "display groups": ["cat /etc/group | less"],
   
   "check for shellshock vulnerability": ["env 'VAR=() { :;}; echo Bash is vulnerable!' 'FUNCTION()=() { :;}; echo Bash is vulnerable!' bash -c 'echo Bash is safe if this is the only line displayed.'"],
   
-  "search top for bad processes": ["top",
-                                   "ps -aux | less",
-                                   "ps -aux | grep python | less"],
+  "search top for bad processes": ["htop",
+                                   "ps aux | less",
+                                   "ps aux | grep python | less"],
   
   "check for rootkits": ["apt-get install -y chrootkit",
                          "chrootkit -q"],
