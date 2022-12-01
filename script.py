@@ -73,6 +73,8 @@ commands = {
   "check for rootkits": ["apt-get install -y chrootkit",
                          "chrootkit -q"],
   
+  "secure shared memory": ["echo 'none  /run/shm  tmpfs rw,noexec,nosuid,nodev	0	0' >> /etc/fstab"],
+  
   "check /etc/sudoers for bad stuff": ["visudo", "ls -la /etc/sudoers.d/"],
   
   "enable snap": ["systemctl unmask snapd", "systemctl start snapd"],
@@ -111,6 +113,7 @@ bad_programs = ["zenmap", "nmap", "telnet", "hydra", "john", "nitko", "freeciv",
 commands["get rid of always bad programs"] = [("apt-get remove --purge " + i) for i in bad_programs]
 commands["apt-get cleanup stuff"] = ["apt-get autoremove", "apt-get autoclean"]
 
+# S
 
 # Section 3: Execute the commands
 for count, c in enumerate(commands):
