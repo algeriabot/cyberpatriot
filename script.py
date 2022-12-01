@@ -2,6 +2,7 @@
 # Gabe Tao
 import os
 
+# Section 1: Define commands
 commands = {
   "run prelim updates": ["apt-get update -y"],
   
@@ -72,6 +73,8 @@ commands = {
   "check for rootkits": ["apt-get install -y chrootkit",
                          "chrootkit -q"],
   
+  "check /etc/sudoers for bad stuff": ["visudo", "ls -la /etc/sudoers.d/"],
+  
   "enable snap": ["systemctl unmask snapd", "systemctl start snapd"],
   
   "list snap packages": ["snap list"],
@@ -98,11 +101,18 @@ commands = {
                      "echo \"alias sudo='sudo '\" >> .bashrc",
                      "echo \"alias cat='batcat'\" >> .bashrc",
                      "echo \"alias top='htop'\" >> .bashrc",
-                     "source ~/.bashrc"],
-  "apt-get cleanup stuff": ["apt-get autoremove", "apt-get autoclean"]
-  
+                     "source ~/.bashrc"]
 }
 
+
+# Section 2: some bad programs to always get rid of
+bad_programs = ["zenmap", "nmap", "telnet", "hydra", "john", "nitko", "freeciv", "ophcrack", "kismet", "minetest"]
+
+commands["get rid of always bad programs"] = [("apt-get remove --purge " + i) for i in bad_programs]
+commands["apt-get cleanup stuff"] = ["apt-get autoremove", "apt-get autoclean"]
+
+
+# Section 3: Execute the commands
 for count, c in enumerate(commands):
   
   print(f"\033[92m ========== TASK #{count+1} ========== \033[00m")
@@ -134,6 +144,8 @@ for count, c in enumerate(commands):
   print()
   print()
   
+  
+# Section 4: Bulk password changes
 print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
 print("Time to do user password changes")
 print("Type the names of the users, NOT INCLUDING YOURSELF, and type stop to stop:")
