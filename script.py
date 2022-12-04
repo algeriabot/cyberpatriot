@@ -90,6 +90,8 @@ commands = {
                                            "chown root:shadow /etc/gshadow",
                                            "chmod u-x,g-wx,o-rwx /etc/gshadow"],
   
+  "check for files with 777 permissions": ["cd / && ls -laR 2> /dev/null | grep rwxrwxrwx | grep -v 'lrwx'"],
+  
   "list user home directories (make sure everyone owns their own)": ["ls -lah /home/"],
   
   "print PATH": ['echo "$PATH" | tr ":" "\n" | nl'],
