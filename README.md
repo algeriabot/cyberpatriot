@@ -1,18 +1,25 @@
-## 1. Python Security Script
+## Installing
+
+Clone the repo:
+```
+sudo apt-get install -y git
+git clone https://github.com/t-ebag/cyberpatriot.git
+cd cyberpatriot
+```
+
+## Script 1: Python Security Script
 
 Conduro and custom commands included.
 
-To download:
+To run:
 ```
-wget https://raw.githubusercontent.com/t-ebag/cyberpatriot/main/script.py
 sudo python3 script.py
 ```
 
-## 2. CIS Hardening Script
+## Script 2: CIS Hardening Script
 
-To download:
+To run:
 ```
-wget https://raw.githubusercontent.com/t-ebag/cyberpatriot/main/cis.sh
 chmod +x ./cis.sh
 ./cis.sh (don't run as root!)
 ```
