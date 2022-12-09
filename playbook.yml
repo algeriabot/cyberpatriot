@@ -5,5 +5,5 @@
   ignore_errors: yes
 
   roles:
-    - ubuntu2204_cis
+    - ubuntu2004_cis
     
