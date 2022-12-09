@@ -1,9 +1,15 @@
 # Ubuntu CP Script
 # Gabe Tao
 import os
+print(f"Currently running in {os.getcwd()}")
 
 # Section 1: Define commands
 commands = {
+  "install cool new sounds": ["cp /opt/CyberPatriot/sounds/gain.wav /opt/CyberPatriot/sounds/gain.bak",
+                              "cp /opt/CyberPatriot/sounds/alarm.wav /opt/CyberPatriot/sounds/alarm.bak",
+                              "mv ./new_sounds/new-gain.wav /opt/CyberPatriot/sounds/gain.wav",
+                              "mv ./new_sounds/emotional-damage.wav /opt/CyberPatriot/sounds/alarm.wav"],
+                              
   "run prelim updates": ["apt-get update -y"],
   
   "install dependencies": ["apt-get install -y wget curl"],
