@@ -9,16 +9,21 @@ commands = {
                               "cp /opt/CyberPatriot/alarm.wav /opt/CyberPatriot/alarm.bak",
                               "mv ./new_sounds/new-gain.wav /opt/CyberPatriot/gain.wav",
                               "mv ./new_sounds/emotional-damage.wav /opt/CyberPatriot/alarm.wav"],
+
+  "go and change the update sources! enter to continue": ["sleep 1"],
                               
   "run prelim updates": ["apt-get update -y"],
   
   "install dependencies": ["apt-get install -y wget curl"],
+
+  "install helpme command into /usr/bin/helpme.py": ["wget -O /usr/bin/helpme.py https://raw.githubusercontent.com/algeriabot/helpme/main/helpme.py",
+                             "alias helpme='sudo python3 /usr/bin/helpme.py'"]
   
   "run Conduro security script": ["wget -O ./conduro.sh https://raw.githubusercontent.com/algeriabot/ubuntu/main/install.sh",
                                   "chmod +x ./conduro.sh",
                                   "./conduro.sh"],
   
-  "check for bad apt sources": ["micro /etc/apt/sources.list"],
+  "check for bad apt sources": ["nano /etc/apt/sources.list"],
   
   "install password checking module": ["apt-get install libpam-pwquality"],
   
@@ -111,6 +116,7 @@ commands = {
                      "echo \"alias sudo='sudo '\" >> .bashrc",
                      "echo \"alias cat='batcat'\" >> .bashrc",
                      "echo \"alias top='htop'\" >> .bashrc",
+                     "echo \"alias helpme='python3 /usr/bin/helpme.py'\" >> .bashrc",
                      "source ~/.bashrc"]
 }
 
