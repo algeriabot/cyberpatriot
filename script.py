@@ -14,7 +14,7 @@ commands = {
   
   "install dependencies": ["apt-get install -y wget curl"],
   
-  "run Conduro security script": ["wget -O ./conduro.sh https://raw.githubusercontent.com/t-ebag/ubuntu/main/install.sh",
+  "run Conduro security script": ["wget -O ./conduro.sh https://raw.githubusercontent.com/algeriabot/ubuntu/main/install.sh",
                                   "chmod +x ./conduro.sh",
                                   "./conduro.sh"],
   
