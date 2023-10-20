@@ -3,7 +3,7 @@
 Clone the repo:
 ```
 sudo apt-get install -y git
-git clone https://github.com/t-ebag/cyberpatriot.git
+git clone https://github.com/algeriabot/cyberpatriot.git
 cd cyberpatriot
 ```
 
