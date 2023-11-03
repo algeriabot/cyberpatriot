@@ -17,7 +17,7 @@ commands = {
   "install dependencies": ["apt-get install -y wget curl"],
 
   "install helpme command into /usr/bin/helpme.py": ["wget -O /usr/bin/helpme.py https://raw.githubusercontent.com/algeriabot/helpme/main/helpme.py",
-                             "alias helpme='sudo python3 /usr/bin/helpme.py'"]
+                             "alias helpme='sudo python3 /usr/bin/helpme.py'"],
   
   "run Conduro security script": ["wget -O ./conduro.sh https://raw.githubusercontent.com/algeriabot/ubuntu/main/install.sh",
                                   "chmod +x ./conduro.sh",
@@ -50,6 +50,8 @@ commands = {
                          "ufw status verbose"],
   
   "search for media files in /home": ["find /home -iregex '.*\.\(mp3\|mp4\|mp6\|pdf\|m4a\|mov\|aac\|ogg\|webm\|flac\|jpg\|gif\|png\|jpeg\|tiff\)$'"],
+
+  "look for even more bad files in /home": ['for s in mp3 txt wav wma aac mp4 mov avi gif jpg png bmp img exe msi bat sh; do sudo find /home -name "*.$s"; done'],
   
   "remove ftp": ["apt-get remove --purge ftp ftpd vsftpd pure-ftpd"],
   
@@ -122,9 +124,9 @@ commands = {
 
 
 # Section 2: some bad programs to always get rid of
-bad_programs = ["zenmap", "nmap", "telnet", "hydra", "john", "nitko", "freeciv", "ophcrack", "kismet", "minetest"]
+bad_programs = ["zenmap", "nmap", "telnet", "hydra", "john", "nitko", "freeciv", "ophcrack", "kismet", "minetest", "openvpn", "wireshark"]
 
-commands["get rid of always bad programs"] = [("apt-get remove --purge " + i) for i in bad_programs]
+commands["get rid of always bad programs"] = [("apt-get remove --purge " + i + "*") for i in bad_programs]
 commands["apt-get cleanup stuff"] = ["apt-get autoremove", "apt-get autoclean"]
 
 # S
