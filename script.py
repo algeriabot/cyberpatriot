@@ -10,11 +10,13 @@ commands = {
                               "mv ./new_sounds/new-gain.wav /opt/CyberPatriot/gain.wav",
                               "mv ./new_sounds/emotional-damage.wav /opt/CyberPatriot/alarm.wav"],
 
-  "go and change the update sources! enter to continue": ["sleep 1"],
+  "go and change the update sources! enter to continue": ["nano /etc/apt/sources.list"],
                               
   "run prelim updates": ["apt-get update -y"],
   
   "install dependencies": ["apt-get install -y wget curl"],
+
+  "install password checking module": ["apt-get install libpam-pwquality"],
 
   "install helpme command into /usr/bin/helpme.py": ["wget -O /usr/bin/helpme.py https://raw.githubusercontent.com/algeriabot/helpme/main/helpme.py",
                              "alias helpme='sudo python3 /usr/bin/helpme.py'"],
@@ -22,11 +24,7 @@ commands = {
   "run Conduro security script": ["wget -O ./conduro.sh https://raw.githubusercontent.com/algeriabot/ubuntu/main/install.sh",
                                   "chmod +x ./conduro.sh",
                                   "./conduro.sh"],
-  
-  "check for bad apt sources": ["nano /etc/apt/sources.list"],
-  
-  "install password checking module": ["apt-get install libpam-pwquality"],
-  
+    
   "install micro text editor": ["curl https://getmic.ro | bash", "mv ./micro /bin/micro"],
   
   "install bat": ["apt-get install bat"],
