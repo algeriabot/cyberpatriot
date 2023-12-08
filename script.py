@@ -73,7 +73,7 @@ commands = {
   
   "make sure there are no uid 0 besides root": ["grep :0: /etc/passwd"],
   
-  "make sure there are no users with unset or empty password": ["grep ':*:' /etc/passwd", "grep '::' /etc/passwd"],
+  "make sure there are no users with unset or empty password": ["cat /etc/shadow | awk -F: '($2==""){print $1}'"],
   
   "display groups": ["cat /etc/group | less"],
   
@@ -83,8 +83,8 @@ commands = {
                                    "ps aux | less",
                                    "ps aux | grep python | less"],
   
-  "check for rootkits": ["apt-get install -y chrootkit",
-                         "chrootkit -q"],
+  "check for rootkits": ["apt-get install -y chkrootkit",
+                         "chkrootkit -q"],
   
   "secure shared memory": ["echo 'none  /run/shm  tmpfs rw,noexec,nosuid,nodev	0	0' >> /etc/fstab"],
   
@@ -108,6 +108,8 @@ commands = {
   "list user home directories (make sure everyone owns their own)": ["ls -lah /home/"],
   
   "print PATH": ['echo "$PATH" | tr ":" "\n" | nl'],
+
+  "list manually installed software packages": ["comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)"],
                                                 
   "set up aliases": ["echo >> .bashrc",
                      "echo \"alias canhas='sudo apt-get install -y'\" >> .bashrc",
@@ -124,7 +126,7 @@ commands = {
 
 
 # Section 2: some bad programs to always get rid of
-bad_programs = ["zenmap", "nmap", "telnet", "hydra", "john", "nitko", "freeciv", "ophcrack", "kismet", "minetest", "openvpn", "wireshark"]
+bad_programs = ["zenmap", "nmap", "telnet", "hydra", "john", "nitko", "freeciv", "ophcrack", "kismet", "minetest", "openvpn", "wireshark", "ntalk", "postfix"]
 
 commands["get rid of always bad programs"] = [("apt-get remove --purge " + i + "*") for i in bad_programs]
 commands["apt-get cleanup stuff"] = ["apt-get autoremove", "apt-get autoclean"]
