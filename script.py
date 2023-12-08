@@ -11,6 +11,9 @@ commands = {
                               "mv ./new_sounds/emotional-damage.wav /opt/CyberPatriot/alarm.wav"],
 
   "go and change the update sources! enter to continue": ["nano /etc/apt/sources.list"],
+
+  "auto change update sources": ["cp /etc/apt/sources.list ~/sources.list.bak", 
+                                 "wget -O /etc/apt/sources.list https://gist.githubusercontent.com/ishad0w/788555191c7037e249a439542c53e170/raw/3822ba49241e6fd851ca1c1cbcc4d7e87382f484/sources.list"]
                               
   "run prelim updates": ["apt-get update -y"],
   
