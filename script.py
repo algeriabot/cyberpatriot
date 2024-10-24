@@ -13,7 +13,7 @@ commands = {
   "go and change the update sources! enter to continue": ["nano /etc/apt/sources.list"],
 
   "auto change update sources": ["cp /etc/apt/sources.list ~/sources.list.bak", 
-                                 "wget -O /etc/apt/sources.list https://gist.githubusercontent.com/ishad0w/788555191c7037e249a439542c53e170/raw/3822ba49241e6fd851ca1c1cbcc4d7e87382f484/sources.list"]
+                                 "wget -O /etc/apt/sources.list https://gist.githubusercontent.com/ishad0w/788555191c7037e249a439542c53e170/raw/3822ba49241e6fd851ca1c1cbcc4d7e87382f484/sources.list"],
                               
   "run prelim updates": ["apt-get update -y"],
   
@@ -30,17 +30,7 @@ commands = {
     
   "install micro text editor": ["curl https://getmic.ro | bash", "mv ./micro /bin/micro"],
   
-  "install bat": ["apt-get install bat"],
-  
-  "install gufw": ["apt-get install gufw"],
-  
-  "install bum": ["apt-get install bum"],
-  
-  "install auditing program": ["apt-get install auditd"],
-  
-  "install antivirus": ["apt-get install clamtk"],
-  
-  "install htop": ["apt-get install htop"],
+  "install bat, gufw, bum, auditd, clamtk, htop": ["apt-get install bat gufw bum auditd clamtk htop"],
   
   "enable audits": ["auditctl -e 1"],
   
@@ -91,9 +81,9 @@ commands = {
   
   "check /etc/sudoers for bad stuff": ["visudo", "ls -la /etc/sudoers.d/"],
   
-  "enable snap": ["systemctl unmask snapd", "systemctl start snapd"],
+  #"enable snap": ["systemctl unmask snapd", "systemctl start snapd"],
   
-  "list snap packages": ["snap list"],
+  #"list snap packages": ["snap list"],
   
   "configure sensitive file permissions (first, open a terminal and check who owns these: \n/etc/shadow\n/etc/gshadow\n": ["chown root:root /etc/passwd",
                                            "chmod u-x,go-wx /etc/passwd",
@@ -129,19 +119,17 @@ commands = {
 # Section 2: some bad programs to always get rid of
 bad_programs = ["zenmap", "nmap", "telnet", "hydra", "john", "nitko", "freeciv", "ophcrack", "kismet", "minetest", "openvpn", "wireshark", "ntalk", "postfix"]
 
-commands["get rid of always bad programs"] = [("apt-get remove --purge " + i + "*") for i in bad_programs]
+commands["get rid of always bad programs"] = ["apt-get remove --purge " + " ".join(bad_programs)]
 commands["apt-get cleanup stuff"] = ["apt-get autoremove", "apt-get autoclean"]
-
-# S
 
 # Section 3: Execute the commands
 for count, c in enumerate(commands):
   
   print(f"\033[92m ========== TASK #{count+1} ========== \033[00m")
   print()
-  print(f"\033[96m        This task will {c} and will run the command(s): \033[00m")
+  print(f"\033[96m        Description: {c} Commands: \033[00m")
   for i in commands[c]:
-    print("        sudo " + i)
+    print("        " + i)
   print()
   response = input("        Proceed? [y/n/s]: ")
   print()
@@ -175,8 +163,8 @@ username_password_list = []
 while True:
   username = input("username:")
   if username != "stop":
-    username_password_list.append(f"{username}:CyberPatriot!123\n")
-    print(f"    added {username}:CyberPatriot!123 successfully")
+    username_password_list.append(f"{username}:Cyb3rP4triot!@#$%\n")
+    print(f"    added {username}:Cyb3rP4triot!@#$% successfully")
   else:
     break
 
@@ -187,8 +175,8 @@ print("Done")
 
 input("Check over file 'bulkpasswords'....")
 
-print("Running command 'chpassword < bulkpasswords'...")
-os.system("sudo chpassword < bulkpasswords")
+print("Running command 'chpasswd < bulkpasswords'...")
+os.system("sudo chpasswd < bulkpasswords")
 print("done")
 
             
