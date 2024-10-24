@@ -12,14 +12,12 @@ commands = {
 
   "go and change the update sources! enter to continue": ["nano /etc/apt/sources.list"],
 
-  "auto change update sources": ["cp /etc/apt/sources.list ~/sources.list.bak", 
-                                 "wget -O /etc/apt/sources.list https://gist.githubusercontent.com/ishad0w/788555191c7037e249a439542c53e170/raw/3822ba49241e6fd851ca1c1cbcc4d7e87382f484/sources.list"],
+  "fix apt sources list": ["cp /etc/apt/sources.list /etc/apt/sources.list.bak", 
+                                 "wget -O /etc/apt/sources.list https://raw.githubusercontent.com/algeriabot/cyberpatriot/refs/heads/main/sources.list"],
                               
   "run prelim updates": ["apt-get update -y"],
   
-  "install dependencies": ["apt-get install -y wget curl"],
-
-  "install password checking module": ["apt-get install libpam-pwquality"],
+  "install packages": ["apt-get install -y wget curl libpam-pwquality bat gufw bum auditd clamtk htop"],
 
   "install helpme command into /usr/bin/helpme.py": ["wget -O /usr/bin/helpme.py https://raw.githubusercontent.com/algeriabot/helpme/main/helpme.py",
                              "alias helpme='sudo python3 /usr/bin/helpme.py'"],
@@ -29,9 +27,7 @@ commands = {
                                   "./conduro.sh"],
     
   "install micro text editor": ["curl https://getmic.ro | bash", "mv ./micro /bin/micro"],
-  
-  "install bat, gufw, bum, auditd, clamtk, htop": ["apt-get install bat gufw bum auditd clamtk htop"],
-  
+    
   "enable audits": ["auditctl -e 1"],
   
   "enable ufw firewall": ["ufw enable",
