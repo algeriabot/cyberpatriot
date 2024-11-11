@@ -15,7 +15,7 @@ commands = {
                               
   "run prelim updates": ["apt-get update -y"],
   
-  "install packages": ["apt-get install -y wget curl libpam-pwquality gufw bat auditd clamtk htop"],
+  "install packages": ["apt-get install -y wget curl libpam-pwquality libpam-cracklib gufw bat auditd clamtk htop"],
 
   "install helpme command into /usr/bin/helpme.py": ["wget -O /usr/bin/helpme.py https://raw.githubusercontent.com/algeriabot/helpme/main/helpme.py",
                              "alias helpme='sudo python3 /usr/bin/helpme.py'"],
