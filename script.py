@@ -10,14 +10,12 @@ commands = {
                               "mv ./new_sounds/new-gain.wav /opt/CyberPatriot/gain.wav",
                               "mv ./new_sounds/emotional-damage.wav /opt/CyberPatriot/alarm.wav"],
 
-  "go and change the update sources! enter to continue": ["nano /etc/apt/sources.list"],
-
   "fix apt sources list": ["cp /etc/apt/sources.list /etc/apt/sources.list.bak", 
                                  "wget -O /etc/apt/sources.list https://raw.githubusercontent.com/algeriabot/cyberpatriot/refs/heads/main/sources.list"],
                               
   "run prelim updates": ["apt-get update -y"],
   
-  "install packages": ["apt-get install -y wget curl libpam-pwquality bat gufw bum auditd clamtk htop"],
+  "install packages": ["apt-get install -y wget curl libpam-pwquality gufw bat auditd clamtk htop"],
 
   "install helpme command into /usr/bin/helpme.py": ["wget -O /usr/bin/helpme.py https://raw.githubusercontent.com/algeriabot/helpme/main/helpme.py",
                              "alias helpme='sudo python3 /usr/bin/helpme.py'"],
