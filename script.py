@@ -36,7 +36,7 @@ commands = {
   
   "search for media files in /home": ["find /home -iregex '.*\.\(mp3\|mp4\|mp6\|pdf\|m4a\|mov\|aac\|ogg\|webm\|flac\|jpg\|gif\|png\|jpeg\|tiff\)$'"],
 
-  "look for even more bad files in /home": ['for s in mp3 txt wav wma aac mp4 mov avi gif jpg png bmp img exe msi bat sh; do sudo find /home -name "*.$s"; done'],
+  "look for even more bad files in /home": ["bash -c 'for s in mp3 txt wav wma aac ogg mp4 mov avi gif flac webm pdf tiff jpg jpeg png bmp img exe msi bat sh; do sudo find /home -iname \"*.$s\"; done'"],
   
   "remove ftp": ["apt-get remove --purge ftp ftpd vsftpd pure-ftpd"],
   
@@ -58,7 +58,7 @@ commands = {
   
   "make sure there are no uid 0 besides root": ["grep :0: /etc/passwd"],
   
-  "make sure there are no users with unset or empty password": ["cat /etc/shadow | awk -F: '($2==""){print $1}'"],
+  "make sure there are no users with unset or empty password": ["awk -F: '($2==""){print $1}' /etc/shadow"],
   
   "display groups": ["cat /etc/group | less"],
   
