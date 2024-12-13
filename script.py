@@ -15,7 +15,7 @@ commands = {
                               
   "run prelim updates": ["apt-get update -y"],
   
-  "install packages": ["apt-get install -y wget curl libpam-pwquality libpam-cracklib gufw bat auditd clamtk htop"],
+  "install packages": ["apt-get install -y wget curl libpam-pwquality gufw bat auditd clamtk htop"],
 
   "install helpme command into /usr/bin/helpme.py": ["wget -O /usr/bin/helpme.py https://raw.githubusercontent.com/algeriabot/helpme/main/helpme.py",
                              "alias helpme='sudo python3 /usr/bin/helpme.py'"],
@@ -68,8 +68,7 @@ commands = {
                                    "ps aux | less",
                                    "ps aux | grep python | less"],
   
-  "check for rootkits": ["apt-get install -y chkrootkit",
-                         "chkrootkit -q"],
+  "check for rootkits": ["apt-get install -y chkrootkit", "chkrootkit -q"],
   
   "secure shared memory": ["echo 'none  /run/shm  tmpfs rw,noexec,nosuid,nodev	0	0' >> /etc/fstab"],
   
@@ -79,14 +78,31 @@ commands = {
   
   #"list snap packages": ["snap list"],
   
-  "configure sensitive file permissions (first, open a terminal and check who owns these: \n/etc/shadow\n/etc/gshadow\n": ["chown root:root /etc/passwd",
-                                           "chmod u-x,go-wx /etc/passwd",
+  "configure 644 permissions on /etc/[passwd/group/shells/sudoers]": ["chown root:root /etc/passwd",
+                                           "chmod 644 /etc/passwd",
                                            "chown root:root /etc/group",
-                                           "chmod u-x,go-wx /etc/group",
-                                           "chown root:shadow /etc/shadow",
-                                           "chmod u-x,g-wx,o-rwx /etc/shadow",
-                                           "chown root:shadow /etc/gshadow",
-                                           "chmod u-x,g-wx,o-rwx /etc/gshadow"],
+                                           "chmod 644 /etc/group",
+                                           "chown root:root /etc/shells",
+                                           "chmod 644 /etc/shells",
+                                           "chown root:root /etc/sudoers",
+                                           "chmod 0644 /etc/sudoers"],
+  
+  "overwrite and configure 644 on /etc/[motd/issue/issue.net]":
+    ["cp /dev/null /etc/motd && chown root:root /etc/motd && chmod 0644 /etc/motd",
+     "cp /dev/null /etc/issue && chown root:root /etc/issue && chmod 0644 /etc/issue",
+     "cp /dev/null /etc/issue.net && chown root:root /etc/issue.net && chmod 0644 /etc/issue.net"],
+
+  "configure 640 permissions on /etc/[shadow/gshadow/opasswd]": ["chown root:root /etc/shadow",
+                                           "chmod 640 /etc/shadow",
+                                           "chown root:root /etc/gshadow",
+                                           "chmod 640 /etc/gshadow",
+                                           "chown root:root /etc/opasswd",
+                                           "chmod 640 /etc/opasswd"],
+  "configure 600 permissions on /boot/grub/grub.cfg": [
+    "sudo chmod 0600 /boot/grub/grub.cfg",
+    "sudo chown root:root /boot/grub/grub.cfg"],
+  
+  "list contents of sudoers.d": ["ls -la /etc/sudoers.d/"],
   
   "check for files with 777 permissions": ["cd / && ls -laR 2> /dev/null | grep rwxrwxrwx | grep -v 'lrwx'"],
   
@@ -95,23 +111,11 @@ commands = {
   "print PATH": ['echo "$PATH" | tr ":" "\n" | nl'],
 
   "list manually installed software packages": ["comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)"],
-                                                
-  "set up aliases": ["echo >> .bashrc",
-                     "echo \"alias canhas='sudo apt-get install -y'\" >> .bashrc",
-                     "echo \"alias kthxbye='sudo apt-get remove --purge'\" >> .bashrc",
-                     "echo \"alias c='clear'\" >> .bashrc",
-                     "echo \"alias edit='micro'\" >> .bashrc",
-                     "echo \"alias nano='micro'\" >> .bashrc",
-                     "echo \"alias sudo='sudo '\" >> .bashrc",
-                     "echo \"alias cat='batcat'\" >> .bashrc",
-                     "echo \"alias top='htop'\" >> .bashrc",
-                     "echo \"alias helpme='python3 /usr/bin/helpme.py'\" >> .bashrc",
-                     "source ~/.bashrc"]
 }
 
 
 # Section 2: some bad programs to always get rid of
-bad_programs = ["zenmap", "nmap", "telnet", "hydra", "john", "nitko", "freeciv", "ophcrack", "kismet", "minetest", "openvpn", "wireshark", "ntalk", "postfix"]
+bad_programs = ["zenmap", "nmap", "telnet", "hydra", "john", "freeciv", "ophcrack", "minetest", "openvpn", "wireshark", "postfix"]
 
 commands["get rid of always bad programs"] = ["apt-get remove --purge " + " ".join(bad_programs)]
 commands["apt-get cleanup stuff"] = ["apt-get autoremove", "apt-get autoclean"]
