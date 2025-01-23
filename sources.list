@@ -41,6 +41,11 @@
 # entries were disabled at the end of the installation process.
 # For information about how to configure apt package sources,
 # see the sources.list(5) manual.
+
+# Linux Mint 21 only (latest 21.3 is "virginia")
+deb http://packages.linuxmint.com vanessa main upstream import backport
+
+# "jammy" is base packages for Ubuntu 22.04 and Mint 21
 deb http://archive.ubuntu.com/ubuntu jammy main universe restricted multiverse
 deb http://security.ubuntu.com/ubuntu/ jammy-security restricted multiverse main universe
 deb http://archive.ubuntu.com/ubuntu jammy-updates restricted multiverse main universe
