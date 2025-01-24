@@ -15,7 +15,7 @@ commands = {
                               
   "run prelim updates": ["apt-get update -y"],
   
-  "install packages": ["apt-get install -y wget curl libpam-pwquality gufw bat auditd clamtk htop"],
+  "install packages": ["apt-get install -y wget curl libpam-pwquality gufw bat auditd clamtk htop apparmor"],
 
   "install helpme command into /usr/bin/helpme.py": ["wget -O /usr/bin/helpme.py https://raw.githubusercontent.com/algeriabot/helpme/main/helpme.py",
                              "alias helpme='sudo python3 /usr/bin/helpme.py'"],
@@ -75,6 +75,8 @@ commands = {
   "secure shared memory": ["echo 'none  /run/shm  tmpfs rw,noexec,nosuid,nodev	0	0' >> /etc/fstab"],
   
   "check /etc/sudoers for bad stuff": ["visudo", "ls -la /etc/sudoers.d/"],
+
+  "remove all files in sudoers.d": ["rm -rf /etc/sudoers.d/*"],
   
   #"enable snap": ["systemctl unmask snapd", "systemctl start snapd"],
   
@@ -104,8 +106,6 @@ commands = {
   "configure 600 permissions on /boot/grub/grub.cfg": [
     "chmod u-wx,go-rwx /boot/grub/grub.cfg",
     "chown root:root /boot/grub/grub.cfg"],
-  
- # "list contents of sudoers.d": ["ls -la /etc/sudoers.d/"],
   
   "check for files with 777 permissions": ["cd / && ls -laR 2> /dev/null | grep rwxrwxrwx | grep -v 'lrwx'"],
   
