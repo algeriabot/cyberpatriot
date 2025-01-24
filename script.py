@@ -54,7 +54,9 @@ commands = {
     
   "list contents of rc.local": ["cat /etc/rc.local"],
   
-  "lock root user locally": ["passwd -l root"], 
+  #"lock root user locally": ["passwd -l root"], 
+
+  "set root user password for bootloader": ["passwd root"],
   
   "make sure there are no uid 0 besides root": ["grep :0: /etc/passwd"],
   
@@ -98,11 +100,12 @@ commands = {
                                            "chmod 640 /etc/gshadow",
                                            "chown root:root /etc/opasswd",
                                            "chmod 640 /etc/opasswd"],
-  "configure 600 permissions on /boot/grub/grub.cfg": [
-    "sudo chmod 0600 /boot/grub/grub.cfg",
-    "sudo chown root:root /boot/grub/grub.cfg"],
   
-  "list contents of sudoers.d": ["ls -la /etc/sudoers.d/"],
+  "configure 600 permissions on /boot/grub/grub.cfg": [
+    "chmod u-wx,go-rwx /boot/grub/grub.cfg",
+    "chown root:root /boot/grub/grub.cfg"],
+  
+ # "list contents of sudoers.d": ["ls -la /etc/sudoers.d/"],
   
   "check for files with 777 permissions": ["cd / && ls -laR 2> /dev/null | grep rwxrwxrwx | grep -v 'lrwx'"],
   
@@ -115,7 +118,7 @@ commands = {
 
 
 # Section 2: some bad programs to always get rid of
-bad_programs = ["zenmap", "nmap", "telnet", "hydra", "john", "freeciv", "ophcrack", "minetest", "openvpn", "wireshark", "postfix"]
+bad_programs = ["zenmap*", "nmap*", "telnet*", "hydra*", "john*", "freeciv*", "ophcrack*", "minetest*", "openvpn*", "wireshark*", "postfix*"]
 
 commands["get rid of always bad programs"] = ["apt-get remove --purge " + " ".join(bad_programs)]
 commands["apt-get cleanup stuff"] = ["apt-get autoremove", "apt-get autoclean"]
@@ -153,29 +156,29 @@ for count, c in enumerate(commands):
   print()
   
   
-# Section 4: Bulk password changes
-print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-print("Time to do user password changes")
-print("Type the names of the users, NOT INCLUDING YOURSELF, and type stop to stop:")
-username_password_list = []
-while True:
-  username = input("username:")
-  if username != "stop":
-    username_password_list.append(f"{username}:Cyb3rP4triot!@#$%\n")
-    print(f"    added {username}:Cyb3rP4triot!@#$% successfully")
-  else:
-    break
+# # Section 4: Bulk password changes
+# print("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+# print("Time to do user password changes")
+# print("Type the names of the users, NOT INCLUDING YOURSELF, and type stop to stop:")
+# username_password_list = []
+# while True:
+#   username = input("username:")
+#   if username != "stop":
+#     username_password_list.append(f"{username}:Cyb3rP4triot!@#$%\n")
+#     print(f"    added {username}:Cyb3rP4triot!@#$% successfully")
+#   else:
+#     break
 
-bulkpasswords = open("bulkpasswords", "w")
-bulkpasswords.writelines(username_password_list)
-bulkpasswords.close()
-print("Done")
+# bulkpasswords = open("bulkpasswords", "w")
+# bulkpasswords.writelines(username_password_list)
+# bulkpasswords.close()
+# print("Done")
 
-input("Check over file 'bulkpasswords'....")
+# input("Check over file 'bulkpasswords'....")
 
-print("Running command 'chpasswd < bulkpasswords'...")
-os.system("sudo chpasswd < bulkpasswords")
-print("done")
+# print("Running command 'chpasswd < bulkpasswords'...")
+# os.system("sudo chpasswd < bulkpasswords")
+# print("done")
 
             
     
