@@ -118,7 +118,7 @@ commands = {
 
 
 # Section 2: some bad programs to always get rid of
-bad_programs = ["zenmap*", "nmap*", "telnet*", "hydra*", "john*", "freeciv*", "ophcrack*", "minetest*", "openvpn*", "wireshark*", "postfix*"]
+bad_programs = ["zenmap*", "nmap*", "telnet*", "hydra*", "john*", "freeciv*", "ophcrack*", "minetest*", "openvpn*", "wireshark*", "postfix*", "hexchat*", "warpinator*", "bind9*", "aisleriot*", "deluge*", "netcat*"]
 
 commands["get rid of always bad programs"] = ["apt-get remove --purge " + " ".join(bad_programs)]
 commands["apt-get cleanup stuff"] = ["apt-get autoremove", "apt-get autoclean"]
