@@ -10,8 +10,10 @@ commands = {
                               "mv ./new_sounds/new-gain.wav /opt/CyberPatriot/gain.wav",
                               "mv ./new_sounds/emotional-damage.wav /opt/CyberPatriot/alarm.wav"],
 
-  "fix apt sources list": ["cp /etc/apt/sources.list /etc/apt/sources.list.bak", 
+  "APT sources list (UBUNTU ONLY)": ["cp /etc/apt/sources.list /etc/apt/sources.list.bak", 
                                  "wget -O /etc/apt/sources.list https://raw.githubusercontent.com/algeriabot/cyberpatriot/refs/heads/main/sources.list"],
+  "APT sources list (MINT ONLY)": ["cp /etc/apt/sources.list.d/official-package-repositories.list /etc/apt/sources.list.d/official-package-repositories.list.bak",
+                                   "wget -O /etc/apt/sources.list.d/official-package-repositories.list https://raw.githubusercontent.com/algeriabot/cyberpatriot/refs/heads/main/official-package-repositories.list"],
                               
   "run prelim updates": ["apt-get update -y"],
   
