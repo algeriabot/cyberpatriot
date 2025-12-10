@@ -58,9 +58,9 @@ commands = {
     
   "list contents of rc.local": ["cat /etc/rc.local"],
   
-  #"lock root user locally": ["passwd -l root"], 
+  "lock root user locally": ["passwd -l root"], 
 
-  "set root user password for bootloader": ["passwd root"],
+  #"set root user password for bootloader": ["passwd root"],
   
   "make sure there are no uid 0 besides root": ["grep :0: /etc/passwd"],
   
