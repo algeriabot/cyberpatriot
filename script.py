@@ -40,19 +40,21 @@ commands = {
 
   "look for even more bad files in /home": ["bash -c 'for s in mp3 txt wav wma aac ogg mp4 mov avi gif flac webm pdf tiff jpg jpeg png bmp img exe msi bat sh; do sudo find /home -iname \"*.$s\"; done'"],
   
-  "remove ftp": ["apt-get remove --purge ftp ftpd vsftpd pure-ftpd"],
+  "remove ftp": ["apt-get remove --purge ftp* ftpd vsftpd pure-ftpd"],
   
-  "remove samba": ["apt-get remove --purge samba samba-common smbclient"],
+  "remove samba": ["apt-get remove --purge samba* samba-common* smbclient*"],
   
-  "remove avahi": ["apt-get remove --purge avahi-daemon"],
+  "remove avahi": ["apt-get remove --purge avahi-daemon*"],
   
-  "remove apache(2)": ["apt-get remove --purge apache apache2"],
+  "remove apache(2)": ["apt-get remove --purge apache* apache2"],
   
   "remove telnet": ["apt-get remove --purge telnet"],
   
-  "remove snmp email server": ["service snmp stop", "apt-get remove --purge snmp"],
+  "remove snmp email server": ["service snmp stop", "apt-get remove --purge snmp*"],
   
-  "remove pop3": ["service pop3 stop", "apt-get remove --purge pop3"],
+  "remove pop3": ["service pop3 stop", "apt-get remove --purge pop3*"],
+
+  "remove nginx": ["systemctl stop nginx", "apt-get remove --purge nginx*"],
     
   "list contents of rc.local": ["cat /etc/rc.local"],
   
@@ -115,12 +117,12 @@ commands = {
   
   "print PATH": ['echo "$PATH" | tr ":" "\n" | nl'],
 
-  "list manually installed software packages": ["comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)"],
+  "list manually installed software packages": ["bash -c \"comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)\""],
 }
 
 
 # Section 2: some bad programs to always get rid of
-bad_programs = ["zenmap*", "nmap*", "telnet*", "hydra*", "john*", "freeciv*", "ophcrack*", "minetest*", "openvpn*", "wireshark*", "postfix*", "hexchat*", "warpinator*", "bind9*", "aisleriot*", "deluge*", "netcat*"]
+bad_programs = ["zenmap*", "nmap*", "telnet*", "hydra*", "john*", "freeciv*", "ophcrack*", "minetest*", "openvpn*", "wireshark*", "postfix*", "hexchat*", "bind9*", "aisleriot*", "deluge*", "netcat*", "rpcbind*"]
 
 commands["get rid of always bad programs"] = ["apt-get remove --purge " + " ".join(bad_programs)]
 commands["apt-get cleanup stuff"] = ["apt-get autoremove", "apt-get autoclean"]
@@ -140,7 +142,7 @@ for count, c in enumerate(commands):
   if response == "y":
     
     for i in commands[c]:
-      if c == "set up aliases":
+      if c == "set up aliases" or c == "list manually installed software packages":
         os.system(i)
       else:
         os.system("sudo " + i)
@@ -150,6 +152,7 @@ for count, c in enumerate(commands):
     
     print("Stopping script.")
     break
+
     
   else:
     print("\033[91m ========== SKIPPED ========== \033[00m")
