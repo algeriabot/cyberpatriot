@@ -1,0 +1,11 @@
+# LINUX MINT ONLY
+# For Linux Mint, place this file in in /etc/apt/sources.list.d/official-package-repositories.list
+
+# Linux Mint 21 ONLY (latest 21.3 is "virginia")
+deb http://packages.linuxmint.com vanessa main upstream import backport
+
+# Keep for both Mint and Ubuntu. "jammy" is base packages for Ubuntu 22.04 and Mint 21
+deb http://archive.ubuntu.com/ubuntu jammy main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu jammy-updates main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse
