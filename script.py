@@ -48,7 +48,7 @@ commands = {
   
   "remove apache(2)": ["apt-get remove --purge apache* apache2"],
   
-  "remove telnet": ["apt-get remove --purge telnet"],
+  "remove telnet": ["apt-get remove --purge telnet*"],
   
   "remove snmp email server": ["service snmp stop", "apt-get remove --purge snmp*"],
   
@@ -64,7 +64,7 @@ commands = {
   
   "make sure there are no uid 0 besides root": ["grep :0: /etc/passwd"],
   
-  "make sure there are no users with unset or empty password": ["awk -F: '($2==""){print $1}' /etc/shadow"],
+  "make sure there are no users with unset or empty password": ["awk -F: '($2==\"\"){print $1}' /etc/shadow"],
   
   "display groups": ["cat /etc/group | less"],
   
@@ -78,7 +78,7 @@ commands = {
   
   "secure shared memory": ["echo 'none  /run/shm  tmpfs rw,noexec,nosuid,nodev	0	0' >> /etc/fstab"],
   
-  "check /etc/sudoers for bad stuff": ["visudo", "ls -la /etc/sudoers.d/"],
+  #"check /etc/sudoers for bad stuff": ["visudo", "ls -la /etc/sudoers.d/"],
 
   "remove all files in sudoers.d": ["rm -rf /etc/sudoers.d/*"],
   
@@ -111,7 +111,7 @@ commands = {
     "chmod u-wx,go-rwx /boot/grub/grub.cfg",
     "chown root:root /boot/grub/grub.cfg"],
   
-  "check for files with 777 permissions": ["cd / && ls -laR 2> /dev/null | grep rwxrwxrwx | grep -v 'lrwx'"],
+  "check for files with 777 permissions": ["ls -laR / 2> /dev/null | grep rwxrwxrwx | grep -v 'lrwx'"],
   
   "list user home directories (make sure everyone owns their own)": ["ls -lah /home/"],
   
