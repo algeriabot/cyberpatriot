@@ -19,6 +19,10 @@ commands = {
   
   "install packages": ["apt-get install -y wget curl libpam-pwquality gufw bat auditd clamtk htop apparmor"],
 
+  "remove older password library 'cracklib'": ["apt-get purge libpam-cracklib"],
+
+  "upgrade PAM modules": ["apt upgrade libpam-runtime", "apt upgrade libpam-modules"],
+
   "install helpme command into /usr/bin/helpme.py": ["wget -O /usr/bin/helpme.py https://raw.githubusercontent.com/algeriabot/helpme/main/helpme.py",
                              "alias helpme='sudo python3 /usr/bin/helpme.py'"],
   
