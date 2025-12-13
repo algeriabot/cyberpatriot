@@ -121,7 +121,11 @@ commands = {
   
   "print PATH": ['echo "$PATH" | tr ":" "\n" | nl'],
 
+  "remove ncat (state round 2025)": ['apt-get remove --purge ncat*'],
+  
   "list manually installed software packages": ["bash -c \"comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)\""],
+
+  
 }
 
 
